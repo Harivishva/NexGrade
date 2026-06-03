@@ -1,0 +1,328 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="assets/calculator-fill.svg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+S+Guides:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fondamento:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Metamorphous&display=swap" rel="stylesheet">
+    <title>CGPA Calc</title>
+    <style>
+        #result {
+            font-family: "Metamorphous", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        h1,
+        .navbar-brand {
+            font-family: "Monoton", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        h1,
+        h3,
+        #desc1 {
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.7),
+                0 8px 18px rgba(0, 0, 0, 0.9);
+        }
+
+        .calc {
+            border: white solid 5px;
+            border-radius: 15px;
+            box-shadow:
+                0 4px 10px rgba(0, 0, 0, 0.1),
+                0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .result {
+            margin-top: 30px;
+            border: white solid 1px;
+            padding: 10px;
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 30px;
+            box-shadow:
+                0 4px 10px rgba(0, 0, 0, 0.1),
+                0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        label {
+            color: white;
+        }
+
+        label,
+        input,
+        .submit,
+        .btn,
+        .nav-link {
+            font-family: "Bricolage Grotesque", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 700;
+            font-style: normal;
+            font-variation-settings:
+                "wdth" 100;
+        }
+
+        h3 {
+            font-family: "Bricolage Grotesque", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+            font-variation-settings:
+                "wdth" 100;
+        }
+
+        footer,
+        label {
+            font-family: "Righteous", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="assets/bgvid.mp4" type="video/mp4">
+    </video>
+    <main class="flex-grow-1">
+        <nav class="navbar bg-light-subtle navbar-expand-lg mb-3 bg-body-tertiary sticky-top">
+            <div class="container-fluid">
+                <i class="bi bi-mortarboard me-2"></i>
+                <a class="navbar-brand" href="index.html"><b>NexGrade</b></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Calc Tools...
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="sgpa.html">GPA Calc</a></li>
+                                <li><a class="dropdown-item" href="#">CGPA Calc</a></li>
+                                <li><a class="dropdown-item" href="#">GPA Planner &nbsp;<div
+                                            class="spinner-border spinner-border-sm" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Attendance Tracker &nbsp;<div
+                                            class="spinner-border spinner-border-sm" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex mt-2" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search"
+                            style="width: 300px;" />
+                        <button class="btn btn-outline-dark" type="button">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="head mt-5" style="text-align: center;">
+            <h1 class="animate__animated animate__rubberBand" id="heading"
+                style="color: white; font-size: clamp(2.5rem, 10vw, 6rem);">
+                CGPA Calculator .
+            </h1>
+        </div>
+        <div class="calc container animate__animated animate__zoomInDown mt-5 pt-3 pb-3">
+            <form class="row g-2 justify-content-center">
+                <div class="col-12 col-md-4" style="text-align: center;">
+                    <label class="form-label">Semester</label>
+                </div>
+                <div class="col-6 col-md-3" style="text-align: center;">
+                    <label class="form-label">Total Credits</label>
+                </div>
+                <div class="col-6 col-md-3" style="text-align: center;">
+                    <label class="form-label">GPA</label>
+                </div>
+                <div class="col-2 col-md-1" style="text-align: center;">
+                </div>
+
+                <div id="courseContainer" class="row g-2 justify-content-center">
+                    <div class="col-12 col-md-4">
+                        <input type="text" placeholder="Semester 1" class="form-control semester">
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <input type="number" placeholder="00" min="0" max="50" class="form-control credits">
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <input type="number" placeholder="0.00" class="form-control gpa" step="0.01" min="0" max="10">
+                    </div>
+                    <div class="col-2 col-md-1">
+                        <button type="button" disabled class="btn btn-danger delete-course">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+
+                    <div class="col-12 col-md-4">
+                        <input type="text" placeholder="Semester 2" class="form-control semester">
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <input type="number" placeholder="00" min="0" max="50" class="form-control credits">
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <input type="number" placeholder="0.00" class="form-control gpa" step="0.01" min="0" max="10">
+                        </select>
+                    </div>
+                    <div class="col-2 col-md-1">
+                        <button type="button" disabled class="btn btn-danger delete-course">
+                            <i class="bi bi-trash"></i>
+                        </button>
+                    </div>
+
+                </div>
+                <div class="submit col-12 col-md-4">
+                    <button type="button" id="addCourse" class="btn btn-dark w-100">+ Add Semester</button>
+                </div>
+                <div class="submit col-12 col-md-4">
+                    <button type="submit" id="submit" class="btn btn-dark w-100">Calc CGPA</button>
+                </div>
+        </div>
+        <div id="resbox" class="result animate__animated animate__zoomInDown animate__delay-1s"
+            style="text-align: center;">
+            <h3 style="color: white; display: inline;">CGPA :&nbsp;&nbsp;<h1 id="result"
+                    style="color: white; display: inline;">0.00</h1>
+            </h3>
+        </div>
+    </main>
+    <footer class="pb-3 pt-3 mt-5 bg-light-subtle">
+        <div class="footer" style="text-align: center;">
+            <span>
+                © 2026 NexGrade. Academic tool for students with simplicity and precision.<br>
+                Independently designed and not affliated with VIT University.
+            </span><br>
+            <a class="me-2" href="https://www.instagram.com/hurrywishvaa.8" target="_blank"><img
+                    src="assets/instagram.svg"></a>
+            <a class="me-2" href="https://github.com/Harivishva" target="_blank"><img src="assets/github.svg"></a>
+            <a class="me-2" href="mailto:harivishva848@gmail.com"><img src="assets/envelope.svg"></a>
+            <a class="me-2" href="https://www.linkedin.com/in/hari-vishva-s" target="_blank"><img
+                    src="assets/linkedin.svg"></a>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+<script>
+    let addCourse = document.getElementById("addCourse");
+    let container = document.getElementById("courseContainer");
+
+    let count = 2;
+
+    addCourse.addEventListener("click", () => {
+
+        count++;
+
+        container.insertAdjacentHTML("beforeend", `
+    <div class="col-12 col-md-4">
+        <input type="text" placeholder="Semester ${count}" class="form-control semester">
+    </div>
+
+    <div class="col-5 col-md-3">
+        <input type="number" placeholder="00" class="form-control credits">
+    </div>
+
+    <div class="col-6 col-md-3">
+                        <input type="number" placeholder="0.00" class="form-control gpa" step="0.01" min="0" max="10">
+                    </div> 
+
+    <div class="col-2 col-md-1">
+        <button type="button" class="btn btn-danger delete-course">
+            <i class="bi bi-trash"></i>
+        </button>
+    </div>
+`);
+
+    });
+
+    container.addEventListener("click", (e) => {
+        const btn = e.target.closest(".delete-course");
+        if (!btn) return;
+        const col = btn.closest('div[class*="col-"]');
+        if (!col) return;
+        const children = Array.from(container.children);
+        const colIndex = children.indexOf(col);
+        if (colIndex === -1) return;
+        const start = Math.max(0, colIndex - 3);
+        for (let i = colIndex; i >= start; i--) {
+            if (children[i]) children[i].remove();
+        }
+    });
+
+    let calcBtn = document.getElementById('submit');
+
+    calcBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        let credits = document.querySelectorAll('.credits');
+        let gpa = document.querySelectorAll('.gpa');
+
+        let totalCredits = 0;
+        let totalPoints = 0;
+
+        for (let i = 0; i < credits.length; i++) {
+            let credit = Number(credits[i].value);
+            let grade = Number(gpa[i].value);
+
+            totalCredits += credit;
+            totalPoints += credit * grade;
+        }
+
+        let sgpa = totalPoints / totalCredits;
+        console.log(sgpa);
+        document.getElementById('result').innerText = sgpa.toFixed(2);
+        let resultBox = document.getElementById('resbox');
+        resultBox.style.backgroundColor = 'black';
+        resultBox.classList.remove("animate__zoomInDown", "animate__delay-1s");
+        void resultBox.offsetWidth;
+        resultBox.classList.add("animate__flash");
+        resultBox.addEventListener('animationend', () => {
+            resultBox.classList.remove("animate__flash")
+        })
+    })
+
+</script>
+
+</html>

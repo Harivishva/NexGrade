@@ -1,0 +1,255 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <title>NexGrade</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="icon" type="image/x-icon" href="assets/webicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+S+Guides:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fondamento:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <style>
+        .card-body {
+            text-align: center;
+        }
+
+        h1,
+        #desc1 {
+            text-shadow:
+                0 2px 4px rgba(0, 0, 0, 0.7),
+                0 8px 18px rgba(0, 0, 0, 0.9);
+        }
+
+        .card,
+        .btn,
+        .navbar,
+        input {
+            box-shadow:
+                0 4px 10px rgba(0, 0, 0, 0.1),
+                0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            text-shadow:
+                0 2px 4px rgba(255, 255, 255, 0.7),
+                0 8px 18px rgba(255, 255, 255, 0.9);
+        }
+
+        input,
+        footer {
+            font-family: "Righteous", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        h1,
+        .navbar-brand {
+            font-family: "Monoton", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+
+        .card-text {
+            font-family: "Playwrite GB S Guides", cursive;
+            font-weight: 800;
+            font-style: normal;
+        }
+
+        h2,
+        .card-title,
+        .btn,
+        #desc1,
+        .nav-link {
+            font-family: "Bricolage Grotesque", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 700;
+            font-style: normal;
+            font-variation-settings:
+                "wdth" 100;
+        }
+
+        body {
+            background-image: url(assets/bgvid.mp4);
+            background-size: cover;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+        }
+
+        /* .card {
+            background-image: url(assets/cardbg1.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+        } */
+
+        .desc {
+            border: white solid 2px;
+            border-bottom: 0px;
+            display: inline-block;
+            padding: 15px 20px 10px 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1),
+                0 8px 24px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column min-vh-100">
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="assets/bgvid.mp4" type="video/mp4">
+    </video>
+    <main class="flex-grow-1">
+        <nav class="navbar bg-light-subtle navbar-expand-lg mb-3 bg-body-tertiary sticky-top">
+            <div class="container-fluid">
+                <i class="bi bi-mortarboard me-2"></i>
+                <a class="navbar-brand" href="#"><b> NexGrade</b></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Calc Tools...
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="sgpa.html">GPA Calc</a></li>
+                                <li><a class="dropdown-item" href="cgpa.html">CGPA Calc</a></li>
+                                <li><a class="dropdown-item" href="#">GPA Planner &nbsp;<div
+                                            class="spinner-border spinner-border-sm" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div></a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="#">Attendance Tracker &nbsp;<div
+                                            class="spinner-border spinner-border-sm" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                    </ul>
+                    <form class="d-flex mt-2" role="search">
+                        <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search"
+                            style="width: 300px;" />
+                        <button class="btn btn-outline-dark" type="button">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        <div class="head" style="text-align: center; margin-top: 50px;">
+            <h1 class="animate__animated animate__rubberBand" id="heading"
+                style="color: white; font-size: clamp(2.5rem, 10vw, 6rem);">
+                Nex-Grade .
+            </h1>
+            <br>
+            <div class="desc animate__animated animate__zoomIn">
+                <h2>
+                    Academic Calculations...<br>
+                    Simplified...
+                </h2>
+                <h5 id="desc1" style="color: whitesmoke;">
+                    Instant GPA & CGPA calculations, accurate grade mapping and attendance tracking designed for VIT
+                    students...
+                </h5>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-sm-4 mb-3 mb-sm-0">
+                    <div class="animate__animated animate__fadeInLeft card me-3 mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title">GPA Calculator</h5>
+                            <p class="card-text">Calculate your Semester GPA instantly using grades and credits.</p>
+                            <a href="sgpa.html" class="btn btn-dark">Calc => GPA</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="animate__animated animate__fadeInRight animate__delay-1s card ms-3 mb-4 mt-4">
+                        <div class="card-body">
+                            <h5 class="card-title">CGPA Calculator</h5>
+                            <p class="card-text">Track your Cumulative academic performance across semesters.</p>
+                            <a href="cgpa.html" class="btn btn-dark">Calc => CGPA</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-4 mb-3 mb-sm-0">
+                    <div class="animate__animated animate__fadeInLeft animate__delay-2s card me-3 mt-2">
+                        <div class="card-body">
+                            <h5 class="card-title">GPA Planner</h5>
+                            <p class="card-text">Estimate the GPA needed to achieve your target CGPA.</p>
+                            <a href="#" class="btn btn-dark">Estimate GPA => Soon... &nbsp;<div
+                                    class="spinner-border spinner-border-sm" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="animate__animated animate__fadeInRight animate__delay-3s card ms-3 mt-2">
+                        <div class="card-body">
+                            <h5 class="card-title">Attendance Tracker</h5>
+                            <p class="card-text">Monitor attendance percentage and calculate safe leave limits.</p>
+                            <a href="#" class="btn btn-dark">Track Attendance => Soon... &nbsp;<div
+                                    class="spinner-border spinner-border-sm" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer class="pb-3 pt-3 mt-5 bg-light-subtle">
+        <div class="footer" style="text-align: center;">
+            <span>
+                © 2026 NexGrade. Academic tool for students with simplicity and precision.<br>
+                Independently designed and not affliated with any institution.
+            </span><br>
+            <a class="me-2" href="https://www.instagram.com/hurrywishvaa.8" target="_blank"><img
+                    src="assets/instagram.svg"></a>
+            <a class="me-2" href="https://github.com/Harivishva" target="_blank"><img src="assets/github.svg"></a>
+            <a class="me-2" href="mailto:harivishva848@gmail.com"><img src="assets/envelope.svg"></a>
+            <a class="me-2" href="https://www.linkedin.com/in/hari-vishva-s" target="_blank"><img
+                    src="assets/linkedin.svg"></a>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
