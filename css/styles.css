@@ -73,8 +73,14 @@
 * {
   box-sizing: border-box;
 }
-
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
 body {
+   width: 100%;
+  max-width: 100%;
   background-color: var(--bg-dark);
   color: var(--text-main) !important;
   font-family: "Bricolage Grotesque", sans-serif;
