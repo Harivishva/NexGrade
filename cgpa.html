@@ -1,328 +1,237 @@
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="icon" type="image/x-icon" href="assets/calculator-fill.svg">
+    <title>NexGrade - CGPA Calculator</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="assets/webicon.svg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playwrite+GB+S+Guides:ital@0;1&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap"
-        rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Fondamento:ital@0;1&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Monoton&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Metamorphous&display=swap" rel="stylesheet">
-    <title>CGPA Calc</title>
-    <style>
-        #result {
-            font-family: "Metamorphous", serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        h1,
-        .navbar-brand {
-            font-family: "Monoton", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        h1,
-        h3,
-        #desc1 {
-            text-shadow:
-                0 2px 4px rgba(0, 0, 0, 0.7),
-                0 8px 18px rgba(0, 0, 0, 0.9);
-        }
-
-        .calc {
-            border: white solid 5px;
-            border-radius: 15px;
-            box-shadow:
-                0 4px 10px rgba(0, 0, 0, 0.1),
-                0 8px 24px rgba(0, 0, 0, 0.2);
-        }
-
-        .result {
-            margin-top: 30px;
-            border: white solid 1px;
-            padding: 10px;
-            width: 300px;
-            margin-left: auto;
-            margin-right: auto;
-            border-radius: 30px;
-            box-shadow:
-                0 4px 10px rgba(0, 0, 0, 0.1),
-                0 8px 24px rgba(0, 0, 0, 0.2);
-        }
-
-        label {
-            color: white;
-        }
-
-        label,
-        input,
-        .submit,
-        .btn,
-        .nav-link {
-            font-family: "Bricolage Grotesque", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 700;
-            font-style: normal;
-            font-variation-settings:
-                "wdth" 100;
-        }
-
-        h3 {
-            font-family: "Bricolage Grotesque", sans-serif;
-            font-optical-sizing: auto;
-            font-weight: 400;
-            font-style: normal;
-            font-variation-settings:
-                "wdth" 100;
-        }
-
-        footer,
-        label {
-            font-family: "Righteous", sans-serif;
-            font-weight: 400;
-            font-style: normal;
-        }
-
-        #bg-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Monoton&family=Righteous&family=Metamorphous&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 
-<body class="d-flex flex-column min-vh-100">
-    <video autoplay muted loop playsinline id="bg-video">
-        <source src="assets/bgvid.mp4" type="video/mp4">
-    </video>
-    <main class="flex-grow-1">
-        <nav class="navbar bg-light-subtle navbar-expand-lg mb-3 bg-body-tertiary sticky-top">
-            <div class="container-fluid">
-                <i class="bi bi-mortarboard me-2"></i>
-                <a class="navbar-brand" href="index.html"><b>NexGrade</b></a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+<body class="d-flex flex-column min-vh-100" data-theme="dark">
+
+    <canvas id="bg-3d-canvas"></canvas>
+    <div class="bg-gradient-overlay"></div>
+
+    <header>
+        <nav class="navbar navbar-expand-lg glass-nav sticky-top py-3">
+            <div class="container">
+                <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+                    <img src="assets/webicon.svg" alt="NexGrade Logo" width="36" height="36" class="me-1">
+                    <span class="brand-heading gradient-text fs-4">NexGrade</span>
+                </a>
+                <button class="navbar-toggler border-0 text-white" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <i class="bi bi-list fs-2 text-white"></i>
                 </button>
+
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                            <a class="nav-link fw-semibold" href="index.html">Home</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Calc Tools...
+                            <a class="nav-link dropdown-toggle fw-bold active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Calculation Tools
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="sgpa.html">GPA Calc</a></li>
-                                <li><a class="dropdown-item" href="#">CGPA Calc</a></li>
-                                <!-- <li><a class="dropdown-item" href="#">GPA Planner &nbsp;<div
-                                            class="spinner-border spinner-border-sm" role="status">
-                                            <span class="visually-hidden">Loading...</span>
-                                        </div></a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item" href="#">Attendance Tracker &nbsp;<div
-                                            class="spinner-border spinner-border-sm" role="status">
-                                            <span class="visually-hidden">Loading...</span>
-                                        </div></a></li> -->
+                            <ul class="dropdown-menu border-0 shadow-lg mt-2">
+                                <li><a class="dropdown-item py-2" href="sgpa.html"><i class="bi bi-calculator me-2 text-info"></i>GPA Calculator</a></li>
+                                <li><a class="dropdown-item py-2 active" href="cgpa.html"><i class="bi bi-graph-up me-2 text-warning"></i>CGPA Calculator</a></li>
+                                <li><hr class="dropdown-divider opacity-25"></li>
+                                <li><a class="dropdown-item py-2" href="goal.html"><i class="bi bi-bullseye me-2 text-purple"></i>GPA Planner</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
-                        </li>
                     </ul>
-                    <form class="d-flex mt-2" role="search">
-                        <input class="form-control me-2" type="search" placeholder="Search..." aria-label="Search"
-                            style="width: 200px;" />
-                        <button class="btn btn-outline-dark" type="button">Search</button>
-                    </form>
                 </div>
             </div>
         </nav>
-        <div class="head mt-5" style="text-align: center;">
-            <h1 class="animate__animated animate__rubberBand" id="heading"
-                style="color: white; font-size: clamp(2.5rem, 10vw, 6rem);">
-                CGPA Calculator .
-            </h1>
-        </div>
-        <div class="calc container animate__animated animate__zoomInDown mt-5 pt-3 pb-3">
-            <form class="row g-2 justify-content-center">
-                <div class="col-12 col-md-4" style="text-align: center;">
-                    <label class="form-label">Semester</label>
-                </div>
-                <div class="col-6 col-md-3" style="text-align: center;">
-                    <label class="form-label">Total Credits</label>
-                </div>
-                <div class="col-6 col-md-3" style="text-align: center;">
-                    <label class="form-label">GPA</label>
-                </div>
-                <div class="col-2 col-md-1" style="text-align: center;">
-                </div>
+    </header>
 
-                <div id="courseContainer" class="row g-2 justify-content-center">
-                    <div class="col-12 col-md-4">
-                        <input type="text" placeholder="Semester 1" class="form-control semester">
+    <main class="flex-grow-1">
+        <!-- Integrated Page Hero Header -->
+        <section class="container text-center pt-5 pb-3">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="glass-card p-4 animate__animated animate__fadeInDown">
+                        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill glass-pill mb-3">
+                            <i class="bi bi-graph-up-arrow text-cyan fs-5"></i>
+                            <span class="fw-bold">Cumulative Performance Engine</span>
+                        </div>
+                        <h1 class="brand-heading gradient-text display-4 fw-bold mb-2">
+                            CGPA Calculator
+                        </h1>
+                        <p class="hero-subtitle mb-0">
+                            Track your overall Cumulative Grade Point Average across multiple semesters with weighted credit averaging.
+                        </p>
                     </div>
-                    <div class="col-5 col-md-3">
-                        <input type="number" placeholder="00" min="0" max="50" class="form-control credits">
-                    </div>
-                    <div class="col-5 col-md-3">
-                        <input type="number" placeholder="0.00" class="form-control gpa" step="0.01" min="0" max="10">
-                    </div>
-                    <div class="col-2 col-md-1">
-                        <button type="button" disabled class="btn btn-danger delete-course">
-                            <i class="bi bi-trash"></i>
-                        </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Calculator Form Container -->
+        <section class="container mb-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="glass-card p-4 animate__animated animate__zoomInDown">
+                        <form class="row g-3 justify-content-center">
+                            <div class="col-12 col-md-4 text-center">
+                                <label class="form-label fw-bold">Semester Title</label>
+                            </div>
+                            <div class="col-6 col-md-3 text-center">
+                                <label class="form-label fw-bold">Total Credits</label>
+                            </div>
+                            <div class="col-6 col-md-3 text-center">
+                                <label class="form-label fw-bold">Semester GPA</label>
+                            </div>
+                            <div class="col-2 col-md-1 text-center"></div>
+
+                            <div id="courseContainer" class="row g-3 justify-content-center">
+                                <div class="col-12 col-md-4">
+                                    <input type="text" placeholder="Semester 1" class="form-control glass-input semester">
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <input type="number" placeholder="24" min="0" max="60" class="form-control glass-input credits">
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <input type="number" placeholder="9.20" class="form-control glass-input gpa" step="0.01" min="0" max="10">
+                                </div>
+                                <div class="col-2 col-md-1 text-center">
+                                    <button type="button" disabled class="btn btn-outline-danger border-0 delete-course">
+                                        <i class="bi bi-trash fs-5"></i>
+                                    </button>
+                                </div>
+
+                                <div class="col-12 col-md-4">
+                                    <input type="text" placeholder="Semester 2" class="form-control glass-input semester">
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <input type="number" placeholder="22" min="0" max="60" class="form-control glass-input credits">
+                                </div>
+                                <div class="col-6 col-md-3">
+                                    <input type="number" placeholder="8.90" class="form-control glass-input gpa" step="0.01" min="0" max="10">
+                                </div>
+                                <div class="col-2 col-md-1 text-center">
+                                    <button type="button" disabled class="btn btn-outline-danger border-0 delete-course">
+                                        <i class="bi bi-trash fs-5"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-5 mt-4">
+                                <button type="button" id="addCourse" class="btn btn-glass w-100 py-2">
+                                    <i class="bi bi-plus-circle me-1"></i> Add Semester
+                                </button>
+                            </div>
+                            <div class="col-12 col-md-5 mt-4">
+                                <button type="submit" id="submit" class="btn btn-gradient w-100 py-2" style="background: var(--gradient-cyan);">
+                                    <i class="bi bi-graph-up-arrow me-1"></i> Calculate CGPA
+                                </button>
+                            </div>
+                        </form>
                     </div>
 
-                    <div class="col-12 col-md-4">
-                        <input type="text" placeholder="Semester 2" class="form-control semester">
+                    <div id="resbox" class="glass-card text-center p-4 mt-4 animate__animated animate__zoomInDown animate__delay-1s" style="max-width: 450px; margin: 0 auto;">
+                        <h3 class="mb-2">Cumulative CGPA</h3>
+                        <div id="result" class="display-3 fw-bold gradient-text">0.00</div>
                     </div>
-                    <div class="col-5 col-md-3">
-                        <input type="number" placeholder="00" min="0" max="50" class="form-control credits">
-                    </div>
-                    <div class="col-5 col-md-3">
-                        <input type="number" placeholder="0.00" class="form-control gpa" step="0.01" min="0" max="10">
-                        </select>
-                    </div>
-                    <div class="col-2 col-md-1">
-                        <button type="button" disabled class="btn btn-danger delete-course">
-                            <i class="bi bi-trash"></i>
-                        </button>
-                    </div>
-
                 </div>
-                <div class="submit col-12 col-md-4">
-                    <button type="button" id="addCourse" class="btn btn-dark w-100">+ Add Semester</button>
-                </div>
-                <div class="submit col-12 col-md-4">
-                    <button type="submit" id="submit" class="btn btn-dark w-100">Calc CGPA</button>
-                </div>
-        </div>
-        <div id="resbox" class="result animate__animated animate__zoomInDown animate__delay-1s"
-            style="text-align: center;">
-            <h3 style="color: white; display: inline;">CGPA :&nbsp;&nbsp;<h1 id="result"
-                    style="color: white; display: inline;">0.00</h1>
-            </h3>
-        </div>
+            </div>
+        </section>
     </main>
-    <footer class="pb-3 pt-3 mt-5 bg-light-subtle">
-        <div class="footer" style="text-align: center;">
-            <span>
-                © 2026 NexGrade. Academic tool for students with simplicity and precision.<br>
-                Independently designed and not affliated with VIT University.
-            </span><br>
-            <a class="me-2" href="https://www.instagram.com/hurrywishvaa.8" target="_blank"><img
-                    src="assets/instagram.svg"></a>
-            <a class="me-2" href="https://github.com/Harivishva" target="_blank"><img src="assets/github.svg"></a>
-            <a class="me-2" href="mailto:harivishva848@gmail.com"><img src="assets/envelope.svg"></a>
-            <a class="me-2" href="https://www.linkedin.com/in/hari-vishva-s" target="_blank"><img
-                    src="assets/linkedin.svg"></a>
+
+    <!-- Floating Dark / Light Mode Toggle -->
+    <button id="theme-toggle-btn" class="theme-toggle-floater" title="Switch Theme Mode">
+        <i class="bi bi-sun-fill text-warning me-1"></i> <span>Light Mode</span>
+    </button>
+
+    <footer class="glass-footer py-4 mt-auto text-center">
+        <div class="container">
+            <span class="small">
+                © 2026 NexGrade. Academic tool for students with simplicity and precision.
+            </span>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="js/bg3d.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        let addCourse = document.getElementById("addCourse");
+        let container = document.getElementById("courseContainer");
+        let count = 2;
+
+        addCourse.addEventListener("click", () => {
+            count++;
+            container.insertAdjacentHTML("beforeend", `
+                <div class="col-12 col-md-4">
+                    <input type="text" placeholder="Semester ${count}" class="form-control glass-input semester">
+                </div>
+                <div class="col-6 col-md-3">
+                    <input type="number" placeholder="20" class="form-control glass-input credits">
+                </div>
+                <div class="col-6 col-md-3">
+                    <input type="number" placeholder="9.00" class="form-control glass-input gpa" step="0.01" min="0" max="10">
+                </div>
+                <div class="col-2 col-md-1 text-center">
+                    <button type="button" class="btn btn-outline-danger border-0 delete-course">
+                        <i class="bi bi-trash fs-5"></i>
+                    </button>
+                </div>
+            `);
+        });
+
+        container.addEventListener("click", (e) => {
+            const btn = e.target.closest(".delete-course");
+            if (!btn) return;
+            const col = btn.closest('div[class*="col-"]');
+            if (!col) return;
+            const children = Array.from(container.children);
+            const colIndex = children.indexOf(col);
+            if (colIndex === -1) return;
+            const start = Math.max(0, colIndex - 3);
+            for (let i = colIndex; i >= start; i--) {
+                if (children[i]) children[i].remove();
+            }
+        });
+
+        let calcBtn = document.getElementById('submit');
+        calcBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            let credits = document.querySelectorAll('.credits');
+            let gpas = document.querySelectorAll('.gpa');
+
+            let totalCredits = 0;
+            let totalPoints = 0;
+
+            for (let i = 0; i < credits.length; i++) {
+                let credit = Number(credits[i].value) || 0;
+                let gpa = Number(gpas[i].value) || 0;
+
+                if (credit > 0) {
+                    totalCredits += credit;
+                    totalPoints += credit * gpa;
+                }
+            }
+
+            let cgpa = totalCredits > 0 ? (totalPoints / totalCredits) : 0;
+            document.getElementById('result').innerText = cgpa.toFixed(2);
+            let resultBox = document.getElementById('resbox');
+            resultBox.classList.remove("animate__zoomInDown", "animate__delay-1s");
+            void resultBox.offsetWidth;
+            resultBox.classList.add("animate__pulse");
+            setTimeout(() => resultBox.classList.remove("animate__pulse"), 1000);
+        });
+    </script>
 </body>
-<script>
-    let addCourse = document.getElementById("addCourse");
-    let container = document.getElementById("courseContainer");
-
-    let count = 2;
-
-    addCourse.addEventListener("click", () => {
-
-        count++;
-
-        container.insertAdjacentHTML("beforeend", `
-    <div class="col-12 col-md-4">
-        <input type="text" placeholder="Semester ${count}" class="form-control semester">
-    </div>
-
-    <div class="col-5 col-md-3">
-        <input type="number" placeholder="00" class="form-control credits">
-    </div>
-
-    <div class="col-5 col-md-3">
-                        <input type="number" placeholder="0.00" class="form-control gpa" step="0.01" min="0" max="10">
-                    </div> 
-
-    <div class="col-2 col-md-1">
-        <button type="button" class="btn btn-danger delete-course">
-            <i class="bi bi-trash"></i>
-        </button>
-    </div>
-`);
-
-    });
-
-    container.addEventListener("click", (e) => {
-        const btn = e.target.closest(".delete-course");
-        if (!btn) return;
-        const col = btn.closest('div[class*="col-"]');
-        if (!col) return;
-        const children = Array.from(container.children);
-        const colIndex = children.indexOf(col);
-        if (colIndex === -1) return;
-        const start = Math.max(0, colIndex - 3);
-        for (let i = colIndex; i >= start; i--) {
-            if (children[i]) children[i].remove();
-        }
-    });
-
-    let calcBtn = document.getElementById('submit');
-
-    calcBtn.addEventListener('click', (event) => {
-        event.preventDefault();
-
-        let credits = document.querySelectorAll('.credits');
-        let gpa = document.querySelectorAll('.gpa');
-
-        let totalCredits = 0;
-        let totalPoints = 0;
-
-        for (let i = 0; i < credits.length; i++) {
-            let credit = Number(credits[i].value);
-            let grade = Number(gpa[i].value);
-
-            totalCredits += credit;
-            totalPoints += credit * grade;
-        }
-
-        let sgpa = totalPoints / totalCredits;
-        console.log(sgpa);
-        document.getElementById('result').innerText = sgpa.toFixed(2);
-        let resultBox = document.getElementById('resbox');
-        resultBox.style.backgroundColor = 'black';
-        resultBox.classList.remove("animate__zoomInDown", "animate__delay-1s");
-        void resultBox.offsetWidth;
-        resultBox.classList.add("animate__flash");
-        resultBox.addEventListener('animationend', () => {
-            resultBox.classList.remove("animate__flash")
-        })
-    })
-
-</script>
-
 </html>
